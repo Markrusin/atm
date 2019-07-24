@@ -1,0 +1,70 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+class ATM
+{
+    static void Main(string[] args)
+    {
+        int amount = 1000, deposit, withdraw;
+        int choice, pin; 
+        {
+            Console.WriteLine("Пожалуйста, введите пин-код");
+            pin = int.Parse(Console.ReadLine());
+            while (true)
+            {
+                Console.WriteLine("Вас приветствует банкомат CASHBOX\n");
+                Console.WriteLine("1. Текущий баланс");
+                Console.WriteLine("2. Снять деньги");
+                Console.WriteLine("3. Внести деньги");
+                Console.WriteLine("4. Отмена");
+                Console.WriteLine("***********\n\n");
+                Console.WriteLine("Подтвердите ваш выбор");
+                choice = int.Parse(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        Console.WriteLine("Ваш текущий баланс составляет {0}", amount);
+                        break;
+
+                    case 2:
+                        Console.WriteLine("Введите сумму для снятия, кратную 100");
+                        withdraw = int.Parse(Console.ReadLine());
+                        if (withdraw % 100 != 0)
+                        {
+                            Console.WriteLine("\n Пожалуйста, введите сумму в пределах 1000");
+                        }
+                        else if (withdraw > (amount - 100))
+                        {
+                            Console.WriteLine("Извините, ваш баланс недостаточен");
+                        }
+                        else
+                        {
+                            amount = amount - withdraw;
+                            Console.WriteLine("Пожалуйста, заберите деньги");
+                            Console.WriteLine("Ваш баланс составляет {0}", amount);
+                        }
+                        break;
+
+                    case 3:
+                        Console.WriteLine("Введите желаемую сумму для внесения на счет");
+                        deposit = int.Parse(Console.ReadLine());
+                        amount = amount + deposit;
+                        Console.WriteLine("Пополнение счета произошло успешно");
+                        Console.WriteLine("Ваш баланс составляет {0}", amount);
+                        break;
+
+                    case 4:
+                        Console.WriteLine("Спасибо");
+                        break;
+
+
+                }
+            }
+        }
+
+    }
+}
+

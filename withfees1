@@ -1,0 +1,19 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Experiment
+{
+    class WithFees : NoFees
+    {
+        public void GetCommission()
+        {
+            comm = amount * 0.01;
+        }
+        double comm;
+        double amount;
+        
+          
+        
+    }
+}

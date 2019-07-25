@@ -1,0 +1,103 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+class NoFees
+{
+    public int amount = 1000, deposit, withdraw;
+    public int choice, pin;
+
+    private int sum;
+
+    public int Sum
+    {
+        get { return sum; }
+        set { sum = value; }
+    }
+
+    public void CheckPin()
+    {
+        Console.WriteLine("Пожалуйста, введите пин-код");
+        pin = int.Parse(Console.ReadLine());
+    }
+
+    public int Greetings()
+    {
+        Console.WriteLine("Вас приветствует банкомат CASHBOX\n");
+        Console.WriteLine("1. Текущий баланс");
+        Console.WriteLine("2. Снять деньги");
+        Console.WriteLine("3. Внести деньги");
+        Console.WriteLine("4. Отмена");
+        Console.WriteLine("***********\n\n");
+        Console.WriteLine("Подтвердите ваш выбор");
+        return choice = int.Parse(Console.ReadLine());
+
+    }
+
+    public void CheckBalance()
+    {
+        Console.WriteLine("Ваш текущий баланс составляет {0}", amount);
+    }
+
+    public void GetMoney(int amount) 
+    {
+        Console.WriteLine("Введите сумму для снятия, кратную 100");
+        withdraw = int.Parse(Console.ReadLine());
+        if (withdraw % 100 != 0)
+        {
+            Console.WriteLine("\n Пожалуйста, введите сумму в пределах 1000");
+        }
+        else if (withdraw > (amount - 100))
+        {
+            Console.WriteLine("Извините, ваш баланс недостаточен");
+        }
+        else
+        {
+            amount = amount - withdraw;
+            Console.WriteLine("Пожалуйста, заберите деньги");
+            Console.WriteLine("Ваш баланс составляет {0}", amount);
+        }
+
+    }
+
+    public void PutMoney()
+    {
+        Console.WriteLine("Введите желаемую сумму для внесения на счет");
+        deposit = int.Parse(Console.ReadLine());
+        amount = amount + deposit;
+        Console.WriteLine("Пополнение счета произошло успешно");
+        Console.WriteLine("Ваш баланс составляет {0}", amount);
+    }
+
+
+    public void Work()
+    {
+        choice = Greetings();
+
+        while (true)
+        {
+
+            switch (choice)
+            {
+                case 1:
+                    CheckBalance();
+                    break;
+
+                case 2:
+                    GetMoney(sum);
+                    break;
+
+                case 3:
+                    PutMoney();
+                    break;
+
+                default:
+                    Console.WriteLine("Спасибо");
+                    break;
+
+            }
+        }
+    }
+}
